@@ -41,6 +41,7 @@ function init() {
   //Crate clock for animation
   clock = new THREE.Clock();
 
+
   //Create scene
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera(
@@ -63,7 +64,7 @@ function init() {
 
   // Load preanimated model, add material, and add it to the scene
   const loader = new GLTFLoader().load(
-    "../../assets/blend_def_ani.glb",
+    "../../assets/car.glb",
     function(gltf) {
       gltf.scene.traverse(function(child) {
         if (child.isMesh) {
@@ -72,16 +73,11 @@ function init() {
       });
       // set position and scale
       mesh = gltf.scene;
-      mesh.position.set(4, 0, 0);
-      mesh.rotation.set(0, 0, 0);
-      mesh.scale.set(1, 1, 1);
+      mesh.position.set(4, 0, -3);
+      mesh.rotation.set(1, 1, 0);
+      mesh.scale.set(1, 5, 1);
       // Add model to scene
       scene.add(mesh);
-      //Check for and play animation frames
-      mixer = new THREE.AnimationMixer(mesh);
-      gltf.animations.forEach((clip) => {
-        mixer.clipAction(clip).play();
-      });
 
     },
     undefined,
@@ -108,9 +104,9 @@ function init() {
       });
       // set position and scale
       mesh2 = gltf.scene;
-      mesh2.position.set(-4, 0, 0);
+      mesh2.position.set(-5, 4, 10);
       mesh2.rotation.set(0, 0, 0);
-      mesh2.scale.set(1, 1, 1);
+      mesh2.scale.set(3, 3, 3);
       // Add model to scene
       scene.add(mesh2);
 
